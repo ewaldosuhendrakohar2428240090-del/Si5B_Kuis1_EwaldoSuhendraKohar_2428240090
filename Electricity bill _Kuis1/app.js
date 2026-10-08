@@ -40,15 +40,14 @@ app.get('/', (req, res) => {
       kelas: 'SI5C',
       mataKuliah: 'Pengembangan Aplikasi Web 2 (PAW 2)'
     },
-    topik: 'Utilitas Tagihan Listrik',
     resource: '/electricity-bills',
-    filterQuery: '?golongan={nama_golongan}',
-    endpoints: {
-      'GET /electricity-bills': 'Mendapatkan seluruh data tagihan (bisa difilter query ?golongan=...)',
-      'GET /electricity-bills/:id': 'Mendapatkan satu data tagihan berdasarkan ID',
-      'POST /electricity-bills': 'Menambahkan data tagihan baru (Header: x-api-key wajib)',
-      'PUT /electricity-bills/:id': 'Memperbarui data tagihan (Header: x-api-key wajib)',
-      'DELETE /electricity-bills/:id': 'Menghapus data tagihan (Header: x-api-key wajib)'
+    filter: 'golongan',
+    routes: {
+      getAll: 'GET /electricity-bills',
+      getById: 'GET /electricity-bills/:id',
+      create: 'POST /electricity-bills',
+      update: 'PUT /electricity-bills/:id',
+      delete: 'DELETE /electricity-bills/:id'
     }
   });
 });
@@ -65,11 +64,7 @@ app.use(globalErrorHandler);
 // Menjalankan Server
 if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
-    console.log(`====================================================`);
-    console.log(`⚡ Server aktif dan berjalan di http://localhost:${PORT}`);
-    console.log(`⚡ Topik: Utilitas Tagihan Listrik (/electricity-bills)`);
-    console.log(`⚡ Pembuat: Ewaldo Suhendra Kohar - 2428240090 (SI5C)`);
-    console.log(`====================================================`);
+    console.log(`Server berjalan di http://localhost:${PORT}`);
   });
 }
 
