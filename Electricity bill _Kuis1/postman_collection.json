@@ -1,0 +1,236 @@
+{
+  "info": {
+    "name": "SI5C Kuis 1 - Utilitas Tagihan Listrik (Ewaldo Suhendra Kohar - 2428240090)",
+    "_postman_id": "993a4c0c-7729-4d6b-9c3f-7e9b0d1e2f3a",
+    "description": "Koleksi Postman untuk pengujian RESTful API Utilitas Tagihan Listrik (5 Skenario Sukses + 4 Skenario Gagal)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "0. Root API Info (GET /)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [""]
+        }
+      }
+    },
+    {
+      "name": "1. Sukses - GET Semua Tagihan (/electricity-bills)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/electricity-bills",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["electricity-bills"]
+        }
+      }
+    },
+    {
+      "name": "2. Sukses - GET Tagihan Filter Golongan (?golongan=R1-900VA)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/electricity-bills?golongan=R1-900VA",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["electricity-bills"],
+          "query": [
+            {
+              "key": "golongan",
+              "value": "R1-900VA"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. Sukses - GET Satu Tagihan by ID (/electricity-bills/2428240090)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/electricity-bills/2428240090",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["electricity-bills", "2428240090"]
+        }
+      }
+    },
+    {
+      "name": "4. Sukses - POST Tambah Tagihan Baru (Valid + API Key)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-api-key",
+            "value": "kuis1_secret_2428240090"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"idPelanggan\": \"2428240090\",\n  \"namaPelanggan\": \"Ewaldo Suhendra Kohar\",\n  \"golongan\": \"R1-1300VA\",\n  \"bulanTagihan\": \"November 2024\",\n  \"pemakaianKwh\": 200,\n  \"tarifPerKwh\": 1444.7,\n  \"totalTagihan\": 288940,\n  \"statusBayar\": \"Lunas\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/electricity-bills",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["electricity-bills"]
+        }
+      }
+    },
+    {
+      "name": "5. Sukses - PUT Update Tagihan by ID (/electricity-bills/2428240090)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-api-key",
+            "value": "kuis1_secret_2428240090"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"idPelanggan\": \"2428240090\",\n  \"namaPelanggan\": \"Ewaldo Suhendra Kohar (Updated)\",\n  \"golongan\": \"R1-900VA\",\n  \"bulanTagihan\": \"Desember 2024\",\n  \"pemakaianKwh\": 180,\n  \"tarifPerKwh\": 1352,\n  \"totalTagihan\": 243360,\n  \"statusBayar\": \"Lunas\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/electricity-bills/2428240090",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["electricity-bills", "2428240090"]
+        }
+      }
+    },
+    {
+      "name": "6. Sukses - DELETE Tagihan by ID (/electricity-bills/2428240091)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "kuis1_secret_2428240090"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/electricity-bills/2428240091",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["electricity-bills", "2428240091"]
+        }
+      }
+    },
+    {
+      "name": "7. Gagal - POST Tanpa API Key (401 Unauthorized)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"idPelanggan\": \"2428240090\",\n  \"namaPelanggan\": \"Ewaldo Suhendra Kohar\",\n  \"golongan\": \"R1-1300VA\",\n  \"bulanTagihan\": \"November 2024\",\n  \"pemakaianKwh\": 200,\n  \"tarifPerKwh\": 1444.7,\n  \"totalTagihan\": 288940,\n  \"statusBayar\": \"Lunas\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/electricity-bills",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["electricity-bills"]
+        }
+      }
+    },
+    {
+      "name": "8. Gagal - POST Data Tidak Lengkap (400 Bad Request)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-api-key",
+            "value": "kuis1_secret_2428240090"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"idPelanggan\": \"2428240090\",\n  \"namaPelanggan\": \"Ewaldo Suhendra Kohar\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/electricity-bills",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["electricity-bills"]
+        }
+      }
+    },
+    {
+      "name": "9. Gagal - POST Format JSON Rusak / Malformed (400 Bad Request)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "x-api-key",
+            "value": "kuis1_secret_2428240090"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"idPelanggan\": \"2428240090\",\n  \"namaPelanggan\": \"Ewaldo Suhendra Kohar\",\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/electricity-bills",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["electricity-bills"]
+        }
+      }
+    },
+    {
+      "name": "10. Gagal - GET ID Tidak Ditemukan (404 Not Found)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/electricity-bills/9999999",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["electricity-bills", "9999999"]
+        }
+      }
+    }
+  ]
+}

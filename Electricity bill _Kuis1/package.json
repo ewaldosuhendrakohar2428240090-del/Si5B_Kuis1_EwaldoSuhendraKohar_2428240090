@@ -1,0 +1,24 @@
+{
+  "name": "si5c_kuis1_ewaldosuhendrakohar",
+  "version": "1.0.0",
+  "description": "RESTful API Utilitas Tagihan Listrik - Kuis 1 Pengembangan Aplikasi Web 2",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js"
+  },
+  "keywords": [
+    "express",
+    "restful-api",
+    "electricity-bills",
+    "mvc",
+    "kuis1"
+  ],
+  "author": "Ewaldo Suhendra Kohar (2428240090)",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2"
+  }
+}
